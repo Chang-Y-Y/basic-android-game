@@ -23,7 +23,7 @@ public class WelcomeActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        // Set up button
+        // Set up button to skip to main menu
         setUpMainMenuButton();
     }
 

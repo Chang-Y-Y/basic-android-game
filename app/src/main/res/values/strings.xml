@@ -12,4 +12,7 @@
     <string name="title_activity_welcome">WelcomeActivity</string>
     <string name="by_creator_name">by Chang Yun</string>
     <string name="to_main_menu">Skip</string>
+    <string name="play">Play</string>
+    <string name="help">Help</string>
+    <string name="options">Options</string>
 </resources>
