@@ -1,5 +1,7 @@
 package ca.cmpt276.as3;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -12,8 +14,19 @@ import android.view.View;
 
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.Toast;
+
+/**
+ * This will be the main menu activity where the "play", "help", and "options" buttons
+ * will be. The manifest has been changed so that the welcome activity will launch first
+ */
 
 public class MainActivity extends AppCompatActivity {
+
+    public static Intent makeIntent(Context context) {
+        return new Intent(context, MainActivity.class);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +35,10 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        // Set up buttons
+        setUpPlayButton();
+        setUpOptionsButton();
+        setUpHelpButton();
     }
 
     @Override
@@ -33,16 +50,37 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
         return super.onOptionsItemSelected(item);
     }
+
+    public void setUpPlayButton() {
+        Button button = findViewById(R.id.button_play);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(MainActivity.this, "Play Button Pressed", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    public void setUpOptionsButton() {
+        Button button = findViewById(R.id.button_options);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(MainActivity.this, "Options Button Pressed", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    public void setUpHelpButton() {
+        Button button = findViewById(R.id.button_help);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(MainActivity.this, "Help Button Pressed", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
 }
