@@ -58,7 +58,8 @@ public class MainActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "Play Button Pressed", Toast.LENGTH_SHORT).show();
+                Intent intent = GameActivity.makeIntent(MainActivity.this);
+                startActivity(intent);
             }
         });
     }
@@ -68,7 +69,8 @@ public class MainActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "Options Button Pressed", Toast.LENGTH_SHORT).show();
+                Intent intent = OptionsActivity.makeIntent(MainActivity.this);
+                startActivity(intent);
             }
         });
     }
@@ -78,7 +80,8 @@ public class MainActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "Help Button Pressed", Toast.LENGTH_SHORT).show();
+                Intent intent = HelpActivity.makeIntent(MainActivity.this);
+                startActivity(intent);
             }
         });
     }
