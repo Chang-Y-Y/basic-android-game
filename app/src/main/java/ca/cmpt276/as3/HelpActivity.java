@@ -26,4 +26,8 @@ public class HelpActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
     }
+
+    public void setTextDescription() {
+        String message = "Hello World";
+    }
 }

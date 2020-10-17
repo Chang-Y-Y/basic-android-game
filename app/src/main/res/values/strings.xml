@@ -18,4 +18,5 @@
     <string name="title_activity_help">Help</string>
     <string name="title_activity_options">OptionsActivity</string>
     <string name="title_activity_game">GameActivity</string>
+    <string name="help_message">Help</string>
 </resources>
