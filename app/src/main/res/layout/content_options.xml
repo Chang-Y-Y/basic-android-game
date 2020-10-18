@@ -21,10 +21,12 @@
         app:layout_constraintGuide_percent="0.19" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/text_board_dimension"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:text="Board Dimensions"
+        android:background="#000000"
+        android:text="@string/board_dimensions"
+        android:textColor="#15ff00"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/guideline11"
         app:layout_constraintEnd_toStartOf="@+id/guideline5"
@@ -32,13 +34,35 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/text_num_bugs"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:text="Number Of Mines"
+        android:background="#000000"
+        android:text="@string/number_of_hacker_bugs"
+        android:textColor="#15ff00"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/guideline11"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline5"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <RadioGroup
+        android:id="@+id/radio_group_num_bugs"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="#000000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline5"
+        app:layout_constraintTop_toTopOf="@+id/guideline11" />
+
+    <RadioGroup
+        android:id="@+id/radio_group_board_dimensions"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="#000000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline11" />
 </androidx.constraintlayout.widget.ConstraintLayout>
