@@ -33,8 +33,8 @@ public class OptionsActivity extends AppCompatActivity {
     private static final String NUM_ROWS_KEY = "Num rows for game board";
     private static final String NUM_COLS_KEY = "Num cols for game board";
     private static final int DEFAULT_NUM_BUGS = 6;
-    private static final int DEFAULT_NUM_ROWS = 6;
-    private static final int DEFAULT_NUM_COLS = 4;
+    private static final int DEFAULT_NUM_ROWS = 4;
+    private static final int DEFAULT_NUM_COLS = 6;
 
     private OptionsConfig optionsConfig;
 
@@ -74,8 +74,7 @@ public class OptionsActivity extends AppCompatActivity {
 
         // Create the buttons
         int[] numBugs = getResources().getIntArray(R.array.num_hack_bugs);
-        for (int i = 0; i < numBugs.length; i++) {
-            final int numBug = numBugs[i];
+        for (final int numBug: numBugs) {
 
             RadioButton button = new RadioButton(this);
             button.setText(getString(R.string.hacker_bugs, numBug));
