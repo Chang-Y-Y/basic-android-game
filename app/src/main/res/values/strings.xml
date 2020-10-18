@@ -19,4 +19,11 @@
     <string name="title_activity_options">OptionsActivity</string>
     <string name="title_activity_game">GameActivity</string>
     <string name="help_message">Help</string>
+
+    <string name="about_the_author">Created by Chang Yeob Yun\nTo learn more
+    about click <a href="https://www.google.ca/">here</a></string>
+    <string name="about_the_game">You are a hacker working for the top spy organization called REDACTED, you were
+    casually working until you noticed that the organizations\' firewalls are being hacked. Luckily, you know how to stop it.
+    You have to find all the bugs that are attempting to get in, but they are hidden within the firewall. Find all the bugs
+    in the smallest number of scans</string>
 </resources>
