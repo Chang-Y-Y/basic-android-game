@@ -11,8 +11,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.view.View;
+import android.widget.TextView;
 
 public class HelpActivity extends AppCompatActivity {
+
+    private static final String HELP_MESSAGE = "";
 
     public static Intent makeIntent(Context context) {
         return new Intent(context, HelpActivity.class);
@@ -25,5 +28,17 @@ public class HelpActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        setTextDescription();
+        setAboutTheGameText();
+    }
+
+    public void setTextDescription() {
+        TextView textView = findViewById(R.id.text_help_description);
+        textView.setText(R.string.about_the_author);
+    }
+
+    public void setAboutTheGameText() {
+        TextView textView = findViewById(R.id.text_game_info);
+        textView.setText(R.string.about_the_game);
     }
 }
