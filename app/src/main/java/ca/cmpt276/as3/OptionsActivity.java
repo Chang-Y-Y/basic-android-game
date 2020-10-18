@@ -28,13 +28,14 @@ import ca.cmpt276.as3.model.OptionsConfig;
  */
 public class OptionsActivity extends AppCompatActivity {
 
-
+    private static final String SHARED_PREFS_NAME = "AppPrefs";
+    private static final String NUM_BUGS_KEY = "Num bugs in game";
     private static final String NUM_ROWS_KEY = "Num rows for game board";
     private static final String NUM_COLS_KEY = "Num cols for game board";
     private static final int DEFAULT_NUM_BUGS = 6;
     private static final int DEFAULT_NUM_ROWS = 6;
     private static final int DEFAULT_NUM_COLS = 4;
-    public static final String NUM_BUGS_KEY = "Num bugs in game";
+
     private OptionsConfig optionsConfig;
 
     // Setting color of the radio buttons https://stackoverflow.com/questions/17120199/change-circle-color-of-radio-button/41516331
@@ -97,7 +98,7 @@ public class OptionsActivity extends AppCompatActivity {
     }
 
     private void saveNumBug(int numBug) {
-        SharedPreferences prefs = this.getSharedPreferences("AppPrefs", MODE_PRIVATE);
+        SharedPreferences prefs = this.getSharedPreferences(SHARED_PREFS_NAME, MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
         editor.putInt(NUM_BUGS_KEY, numBug);
         editor.apply();
@@ -105,7 +106,7 @@ public class OptionsActivity extends AppCompatActivity {
     }
 
     static public int getNumBugInGame(Context context) {
-        SharedPreferences prefs = context.getSharedPreferences("AppPrefs", MODE_PRIVATE);
+        SharedPreferences prefs = context.getSharedPreferences(SHARED_PREFS_NAME, MODE_PRIVATE);
         return prefs.getInt(NUM_BUGS_KEY, DEFAULT_NUM_BUGS);
     }
 
@@ -140,7 +141,7 @@ public class OptionsActivity extends AppCompatActivity {
     }
 
     private void saveBoardSize(int numRows, int numCols) {
-        SharedPreferences sharedPreferences = this.getSharedPreferences("AppPrefs", MODE_PRIVATE);
+        SharedPreferences sharedPreferences = this.getSharedPreferences(SHARED_PREFS_NAME, MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putInt(NUM_ROWS_KEY, numRows);
         editor.putInt(NUM_COLS_KEY, numCols);
@@ -150,14 +151,14 @@ public class OptionsActivity extends AppCompatActivity {
     }
 
     static public int getNumRowsForBoard(Context context) {
-        SharedPreferences preferences = context.getSharedPreferences("AppPrefs", MODE_PRIVATE);
+        SharedPreferences preferences = context.getSharedPreferences(SHARED_PREFS_NAME, MODE_PRIVATE);
 
         return preferences.getInt(NUM_ROWS_KEY,
                 DEFAULT_NUM_ROWS);
     }
 
     static public int getNumColsForBoard(Context context) {
-        SharedPreferences preferences = context.getSharedPreferences("AppPrefs", MODE_PRIVATE);
+        SharedPreferences preferences = context.getSharedPreferences(SHARED_PREFS_NAME, MODE_PRIVATE);
 
         return preferences.getInt(NUM_COLS_KEY,
                 DEFAULT_NUM_COLS);
