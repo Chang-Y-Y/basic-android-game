@@ -26,4 +26,8 @@
     casually working until you noticed that the organizations\' firewalls are being hacked. Luckily, you know how to stop it.
     You have to find all the bugs that are attempting to get in, but they are hidden within the firewall. Find all the bugs
     in the smallest number of scans</string>
+    <string name="number_of_hacker_bugs">Number Of Hacker Bugs</string>
+    <string name="board_dimensions">Board Dimensions</string>
+    <string name="hacker_bugs">"%1d hacker bugs"</string>
+    <string name="board_dimension">"%1d rows, %1d columns"</string>
 </resources>

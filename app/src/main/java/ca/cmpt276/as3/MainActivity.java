@@ -17,6 +17,8 @@ import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.Toast;
 
+import ca.cmpt276.as3.model.OptionsConfig;
+
 /**
  * This will be the main menu activity where the "play", "help", and "options" buttons
  * will be. The manifest has been changed so that the welcome activity will launch first
@@ -34,6 +36,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        // Set up options config
+        populateOptionsConfig();
 
         // Set up buttons
         setUpPlayButton();
@@ -84,6 +89,13 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    public void populateOptionsConfig() {
+        OptionsConfig optionsConfig = OptionsConfig.getInstance();
+        optionsConfig.setNumBug(OptionsActivity.getNumBugInGame(this));
+        optionsConfig.setNumCol(OptionsActivity.getNumColsForBoard(this));
+        optionsConfig.setNumRow(OptionsActivity.getNumRowsForBoard(this));
     }
 
 }

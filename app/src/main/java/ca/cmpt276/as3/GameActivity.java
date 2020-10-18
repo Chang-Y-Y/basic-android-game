@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.view.View;
+import android.widget.TextView;
 
 public class GameActivity extends AppCompatActivity {
 
@@ -25,6 +26,12 @@ public class GameActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        setupTestText();
+
     }
 
+    public void setupTestText() {
+        TextView textView = findViewById(R.id.text_test_game);
+        textView.setText("Hello there");
+    }
 }
