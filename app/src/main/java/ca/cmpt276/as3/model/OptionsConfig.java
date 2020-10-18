@@ -15,9 +15,6 @@ public class OptionsConfig {
     public static OptionsConfig getInstance() {
         if (instance == null) {
             instance = new OptionsConfig();
-            instance.setNumBug(6);
-            instance.setNumRow(4);
-            instance.setNumCol(6);
         }
         return instance;
     }
