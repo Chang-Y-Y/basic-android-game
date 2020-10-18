@@ -2,6 +2,10 @@ package ca.cmpt276.as3;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -23,6 +27,8 @@ public class GameActivity extends AppCompatActivity {
 
     private OptionsConfig optionsConfig;
 
+    Button buttons[][];
+
     public static Intent makeIntent(Context context) {
         return new Intent(context, GameActivity.class);
     }
@@ -35,6 +41,7 @@ public class GameActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         optionsConfig = OptionsConfig.getInstance();
+        buttons = new Button[optionsConfig.getNumRow()][optionsConfig.getNumCol()];
 
         populateButtons();
     }
@@ -62,7 +69,7 @@ public class GameActivity extends AppCompatActivity {
                         TableRow.LayoutParams.MATCH_PARENT,
                         1.0f
                 ));
-                button.setText("" + row + " " + col);
+
                 button.setPadding(0, 0, 0, 0);
                 button.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -72,12 +79,44 @@ public class GameActivity extends AppCompatActivity {
                 });
 
                 tableRow.addView(button);
+                buttons[row][col] = button;
             }
         }
     }
 
     private void gridButtonClicked(int row, int col) {
-        Toast.makeText(this, "Button clicked " + row +", " + col, Toast.LENGTH_SHORT).show();
+
+        Button button = buttons[row][col];
+
+        // Lock Button Sizes
+        lockButtonSizes();
+
+        // Scale image to button
+        // Only works in JellyBean
+        int newWidth = button.getWidth();
+        int newHeight = button.getHeight();
+        Bitmap originalBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.action_lock_pink);
+        Bitmap scaledBitmap = Bitmap.createScaledBitmap(originalBitmap, newWidth, newHeight, true);
+        Resources resources = getResources();
+        button.setBackground(new BitmapDrawable(resources, scaledBitmap));
+
+    }
+
+    private void lockButtonSizes() {
+        for (int row = 0; row < optionsConfig.getNumRow(); row++) {
+            for (int col = 0; col < optionsConfig.getNumCol(); col++) {
+                Button button = buttons[row][col];
+
+                int width = button.getWidth();
+                button.setMinWidth(width);
+                button.setMaxWidth(width);
+
+                int height = button.getHeight();
+                button.setMaxHeight(height);
+                button.setMinHeight(height);
+            }
+        }
+
     }
 
 
