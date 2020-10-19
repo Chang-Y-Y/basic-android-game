@@ -21,11 +21,15 @@ import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import ca.cmpt276.as3.model.Cell;
+import ca.cmpt276.as3.model.Game;
+import ca.cmpt276.as3.model.GameAction;
 import ca.cmpt276.as3.model.OptionsConfig;
 
 public class GameActivity extends AppCompatActivity {
 
     private OptionsConfig optionsConfig;
+    private Game game;
 
     Button buttons[][];
 
@@ -42,6 +46,7 @@ public class GameActivity extends AppCompatActivity {
 
         optionsConfig = OptionsConfig.getInstance();
         buttons = new Button[optionsConfig.getNumRow()][optionsConfig.getNumCol()];
+        game = new Game();
 
         populateButtons();
     }
@@ -91,14 +96,23 @@ public class GameActivity extends AppCompatActivity {
         // Lock Button Sizes
         lockButtonSizes();
 
+        GameAction action = game.updateGame(row, col);
+        switch (action) {
+            case FOUND:
+                int newWidth = button.getWidth();
+                int newHeight = button.getHeight();
+                Bitmap originalBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.action_lock_pink);
+                Bitmap scaledBitmap = Bitmap.createScaledBitmap(originalBitmap, newWidth, newHeight, true);
+                Resources resources = getResources();
+                button.setBackground(new BitmapDrawable(resources, scaledBitmap));
+                refreshScreen();
+                break;
+            case SCANNED:
+                button.setText("" + game.getBoard().getNumOfBugsInPos(row, col));
+        }
         // Scale image to button
         // Only works in JellyBean
-        int newWidth = button.getWidth();
-        int newHeight = button.getHeight();
-        Bitmap originalBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.action_lock_pink);
-        Bitmap scaledBitmap = Bitmap.createScaledBitmap(originalBitmap, newWidth, newHeight, true);
-        Resources resources = getResources();
-        button.setBackground(new BitmapDrawable(resources, scaledBitmap));
+
 
     }
 
@@ -116,8 +130,16 @@ public class GameActivity extends AppCompatActivity {
                 button.setMinHeight(height);
             }
         }
-
     }
 
-
+    private void refreshScreen() {
+        for (int i = 0; i < game.getBoard().getHeight(); i++) {
+            for (int j = 0; j < game.getBoard().getWidth(); j++) {
+                Cell cell = game.getBoard().getCellAt(i, j);
+                if (cell.isScanned()) {
+                    buttons[i][j].setText("" + game.getBoard().getNumOfBugsInPos(i, j));
+                }
+            }
+        }
+    }
 }
