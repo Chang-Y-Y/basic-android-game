@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Assignment3</string>
+    <string name="app_name">Main Menu</string>
     <string name="action_settings">Settings</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
@@ -9,15 +9,15 @@
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
-    <string name="title_activity_welcome">WelcomeActivity</string>
+    <string name="title_activity_welcome">Welcome Screen</string>
     <string name="by_creator_name">by Chang Yun</string>
     <string name="to_main_menu">Skip</string>
     <string name="play">Play</string>
     <string name="help">Help</string>
     <string name="options">Options</string>
     <string name="title_activity_help">Help</string>
-    <string name="title_activity_options">OptionsActivity</string>
-    <string name="title_activity_game">GameActivity</string>
+    <string name="title_activity_options">Options</string>
+    <string name="title_activity_game">Game</string>
     <string name="help_message">Help</string>
 
     <string name="about_the_author">Created by Chang Yeob Yun\nTo learn more
@@ -30,4 +30,9 @@
     <string name="board_dimensions">Board Dimensions</string>
     <string name="hacker_bugs">"%1d hacker bugs"</string>
     <string name="board_dimension">"%1d rows, %1d columns"</string>
+    <string name="hackerman">XX__HackerManZZZZZZZZZ__XX</string>
+
+    <string name="number_of_hacker_bugs_found">"%1d of %1d bugs found</string>
+    <string name="number_of_scans_used">"Number of Scans Used: %1d"</string>
+    <string name="a_winner_is_you">A winner is you</string>
 </resources>
