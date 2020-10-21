@@ -38,7 +38,7 @@
         android:id="@+id/text_congratulations_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="A winner is you"
+        android:text="@string/a_winner_is_you"
         app:layout_constraintBottom_toTopOf="@+id/guideline15"
         app:layout_constraintEnd_toStartOf="@+id/guideline17"
         app:layout_constraintStart_toStartOf="@+id/guideline16"
