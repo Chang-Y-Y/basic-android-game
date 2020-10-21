@@ -3,21 +3,15 @@ package ca.cmpt276.as3;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
-
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.AppCompatRadioButton;
-import androidx.appcompat.widget.Toolbar;
-
 import android.view.View;
+import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import ca.cmpt276.as3.model.OptionsConfig;
 
@@ -39,18 +33,6 @@ public class OptionsActivity extends AppCompatActivity {
 
     private OptionsConfig optionsConfig;
 
-    // Setting color of the radio buttons https://stackoverflow.com/questions/17120199/change-circle-color-of-radio-button/41516331
-    private ColorStateList colorStateList = new ColorStateList(
-            new int[][]{
-                    new int[]{-android.R.attr.state_checked}, //disabled
-                    new int[]{android.R.attr.state_checked} //enabled
-            },
-            new int[]{
-                    Color.WHITE //disabled
-                    , Color.RED //enabled
-            }
-    );
-
     public static Intent makeIntent(Context context) {
         return new Intent(context, OptionsActivity.class);
     }
@@ -67,7 +49,8 @@ public class OptionsActivity extends AppCompatActivity {
         // Set up Radio Options
         setupNumBugsRadioButtons();
         setupBoardDimensionRadioButtons();
-
+        setupResetHighScoreButton();
+        setupResetTimesPlayedButton();
     }
 
     private void setupNumBugsRadioButtons() {
@@ -144,6 +127,30 @@ public class OptionsActivity extends AppCompatActivity {
                 button.setChecked(true);
             }
         }
+    }
+
+    private void setupResetHighScoreButton() {
+        Button button = findViewById(R.id.button_reset_highscore);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                optionsConfig.setHighScore(0);
+                saveHighScoreForCurrentConfig(OptionsActivity.this,
+                        optionsConfig.constructConfigString(),
+                        0);
+            }
+        });
+    }
+
+    private void setupResetTimesPlayedButton() {
+        Button button = findViewById(R.id.button_reset_played_games);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                optionsConfig.setNumGamesStarted(0);
+                saveNumGamesStarted(OptionsActivity.this, 0);
+            }
+        });
     }
 
     private void saveBoardSize(int numRows, int numCols) {

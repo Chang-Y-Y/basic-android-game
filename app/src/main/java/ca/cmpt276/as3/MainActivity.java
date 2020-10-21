@@ -64,8 +64,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 OptionsConfig optionsConfig = OptionsConfig.getInstance();
-                optionsConfig.incrementNumGamesStarted();
                 OptionsActivity.saveNumGamesStarted(MainActivity.this, optionsConfig.getNumGamesStarted());
+                optionsConfig.incrementNumGamesStarted();
 
                 Intent intent = GameActivity.makeIntent(MainActivity.this);
                 startActivity(intent);

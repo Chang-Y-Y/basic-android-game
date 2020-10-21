@@ -43,4 +43,6 @@
     <string name="textview">TextView</string>
     <string name="highscore_text">"Highscore: %1d"</string>
     <string name="num_games_started">"Times Played: %1d"</string>
+    <string name="erase_times_played">Erase times played</string>
+    <string name="erase_config_highscore">Erase config highscore</string>
 </resources>
