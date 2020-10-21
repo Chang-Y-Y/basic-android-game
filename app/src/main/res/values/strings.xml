@@ -22,10 +22,13 @@
 
     <string name="about_the_author">Created by Chang Yeob Yun\nTo learn more
     about click <a href="https://opencoursehub.cs.sfu.ca/bfraser/grav-cms/cmpt276/home">here</a></string>
-    <string name="about_the_game">You are a hacker working for the top spy organization called REDACTED, you were
-    casually working until you noticed that the organizations\' firewalls are being hacked. Luckily, you know how to stop it.
-    You have to find all the bugs that are attempting to get in, but they are hidden within the firewall. Find all the bugs
-    in the smallest number of scans</string>
+    <string name="about_the_game">You are the cyber security expert at your software compnay.
+    You were browsing the mainframe code until you realized that there are bugs present in the code that
+    is hacking and leaking the data. You have to find all the bugs by checking each section of the mainframe grid.
+        If you find a bug then you get information on how many bugs are within that same row or column.
+        Find all the bugs in the fewest number of scans
+    </string>
+    <string name="about_the_credit"></string>
     <string name="number_of_hacker_bugs">Number Of Hacker Bugs</string>
     <string name="board_dimensions">Board Dimensions</string>
     <string name="hacker_bugs">"%1d hacker bugs"</string>

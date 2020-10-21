@@ -53,7 +53,7 @@ public class GameActivity extends AppCompatActivity {
 
         populateButtons();
         lockButtonSizes();
-        refreshScreen();
+        updateGameTextState();
 
     }
 
@@ -123,7 +123,7 @@ public class GameActivity extends AppCompatActivity {
                     button.setTextColor(Color.parseColor("#FFFFFF"));
                 }
         }
-        refreshScreen();
+        refreshScreen(row, col);
     }
 
     private void lockButtonSizes() {
@@ -142,7 +142,8 @@ public class GameActivity extends AppCompatActivity {
         }
     }
 
-    private void refreshScreen() {
+    private void refreshScreen(int row, int col) {
+        /**
         for (int i = 0; i < game.getBoard().getHeight(); i++) {
             for (int j = 0; j < game.getBoard().getWidth(); j++) {
                 Cell cell = game.getBoard().getCellAt(i, j);
@@ -150,14 +151,22 @@ public class GameActivity extends AppCompatActivity {
                     buttons[i][j].setText(getString(R.string.number, game.getBoard().getNumOfBugsInPos(i, j)));
                 }
             }
-        }
+        }*/
 
-        TextView textView = findViewById(R.id.text_num_bugs_found);
-        textView.setText(getString(R.string.number_of_hacker_bugs_found,
-                                    game.getNumBugsFound(),
-                                    game.getNumBugs()));
-        textView = findViewById(R.id.text_num_scans_used);
-        textView.setText(getString(R.string.number_of_scans_used, game.getNumScans()));
+        for (int i = 0; i < game.getBoard().getHeight(); i++) {
+            Cell cell = game.getBoard().getCellAt(i, col);
+            if (cell.isScanned()) {
+                buttons[i][col].setText(getString(R.string.number, game.getBoard().getNumOfBugsInPos(i, col)));
+            }
+
+        }
+        for (int j = 0; j < game.getBoard().getWidth(); j++) {
+            Cell cell = game.getBoard().getCellAt(row, j);
+            if (cell.isScanned()) {
+                buttons[row][j].setText(getString(R.string.number, game.getBoard().getNumOfBugsInPos(row, j)));
+            }
+        }
+        updateGameTextState();
     }
 
     private void checkGameFinished() {
@@ -168,5 +177,14 @@ public class GameActivity extends AppCompatActivity {
 
             Log.i("TAG", "Just showed the dialog");
         }
+    }
+
+    private void updateGameTextState() {
+        TextView textView = findViewById(R.id.text_num_bugs_found);
+        textView.setText(getString(R.string.number_of_hacker_bugs_found,
+                game.getNumBugsFound(),
+                game.getNumBugs()));
+        textView = findViewById(R.id.text_num_scans_used);
+        textView.setText(getString(R.string.number_of_scans_used, game.getNumScans()));
     }
 }
