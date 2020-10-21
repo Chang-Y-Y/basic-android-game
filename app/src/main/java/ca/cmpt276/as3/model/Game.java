@@ -29,6 +29,9 @@ public class Game {
             case CLICKED:
                 break;
         }
+        if (numBugsFound == numBugs) {
+            isFinished = true;
+        }
         return action;
     }
 

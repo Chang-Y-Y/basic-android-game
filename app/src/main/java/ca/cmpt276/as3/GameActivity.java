@@ -49,6 +49,7 @@ public class GameActivity extends AppCompatActivity {
         game = new Game();
 
         populateButtons();
+        refreshScreen();
     }
 
     private void populateButtons() {
@@ -80,6 +81,7 @@ public class GameActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         gridButtonClicked(FINAL_ROW, FINAL_COL);
+                        checkGameFinished();
                     }
                 });
 
@@ -87,6 +89,16 @@ public class GameActivity extends AppCompatActivity {
                 buttons[row][col] = button;
             }
         }
+    }
+
+    private void changeButtonIcons(Button button) {
+        int newWidth = button.getWidth();
+        int newHeight = button.getHeight();
+        Bitmap originalBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.action_lock_pink);
+        Bitmap scaledBitmap = Bitmap.createScaledBitmap(originalBitmap, newWidth, newHeight, true);
+        Resources resources = getResources();
+        button.setBackground(new BitmapDrawable(resources, scaledBitmap));
+        refreshScreen();
     }
 
     private void gridButtonClicked(int row, int col) {
@@ -99,13 +111,7 @@ public class GameActivity extends AppCompatActivity {
         GameAction action = game.updateGame(row, col);
         switch (action) {
             case FOUND:
-                int newWidth = button.getWidth();
-                int newHeight = button.getHeight();
-                Bitmap originalBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.action_lock_pink);
-                Bitmap scaledBitmap = Bitmap.createScaledBitmap(originalBitmap, newWidth, newHeight, true);
-                Resources resources = getResources();
-                button.setBackground(new BitmapDrawable(resources, scaledBitmap));
-                refreshScreen();
+                changeButtonIcons(button);
                 break;
             case SCANNED:
                 button.setText("" + game.getBoard().getNumOfBugsInPos(row, col));
@@ -140,6 +146,19 @@ public class GameActivity extends AppCompatActivity {
                     buttons[i][j].setText("" + game.getBoard().getNumOfBugsInPos(i, j));
                 }
             }
+        }
+
+        TextView textView = findViewById(R.id.text_num_bugs_found);
+        textView.setText(getString(R.string.number_of_hacker_bugs_found,
+                                    game.getNumBugsFound(),
+                                    game.getNumBugs()));
+        textView = findViewById(R.id.text_num_scans_used);
+        textView.setText(getString(R.string.number_of_scans_used, game.getNumScans()));
+    }
+
+    private void checkGameFinished() {
+        if (game.isFinished()) {
+            finish();
         }
     }
 }
