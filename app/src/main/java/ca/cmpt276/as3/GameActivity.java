@@ -18,6 +18,11 @@ import androidx.fragment.app.FragmentManager;
 
 import android.util.Log;
 import android.view.View;
+import android.view.animation.AccelerateInterpolator;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.view.animation.AnimationSet;
+import android.view.animation.DecelerateInterpolator;
 import android.widget.Button;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -154,6 +159,8 @@ public class GameActivity extends AppCompatActivity {
             if (cell.isScanned()) {
                 buttons[i][col].setText(getString(R.string.number, game.getBoard().getNumOfBugsInPos(i, col)));
             }
+            int duration = 2500 * Math.abs(i - row) / game.getBoard().getHeight();
+            animateButton(i, col, duration);
 
         }
         for (int j = 0; j < game.getBoard().getWidth(); j++) {
@@ -161,6 +168,8 @@ public class GameActivity extends AppCompatActivity {
             if (cell.isScanned()) {
                 buttons[row][j].setText(getString(R.string.number, game.getBoard().getNumOfBugsInPos(row, j)));
             }
+            int duration = 2500 * (Math.abs(j - col)) / game.getBoard().getWidth();
+            animateButton(row, j, duration);
         }
         updateGameTextState();
     }
@@ -197,5 +206,15 @@ public class GameActivity extends AppCompatActivity {
         textView.setText(getString(R.string.num_games_started, optionsConfig.getNumGamesStarted()));
         textView = findViewById(R.id.text_high_score);
         textView.setText(getString(R.string.highscore_text, optionsConfig.getHighScore()));
+    }
+
+    private void animateButton(int row,int col, int duration) {
+        Animation fadeOut = new AlphaAnimation(1f, 0.4f);
+        fadeOut.setDuration(duration);
+        fadeOut.setInterpolator(new AccelerateInterpolator());
+
+        Button button = buttons[row][col];
+        button.startAnimation(fadeOut);
+
     }
 }
