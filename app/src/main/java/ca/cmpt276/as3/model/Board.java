@@ -1,5 +1,7 @@
 package ca.cmpt276.as3.model;
 
+import java.util.Random;
+
 public class Board {
 
     private Cell board[][];
@@ -20,16 +22,27 @@ public class Board {
 
     }
 
+    private void populateBoardWithBugs(int numBugs) {
+        Random random = new Random();
+        int row = random.nextInt(height);
+        int col = random.nextInt(width);
+        for (int i = 0; i < numBugs; i++) {
+            while (board[row][col].isBug()) {
+                row = random.nextInt(height);
+                col = random.nextInt(width);
+            }
+            board[row][col].setBug(true);
+        }
+    }
+
+
     private void initializeBoard(int numBugs) {
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
                 board[i][j] = new Cell(false, false, false);
-                if (numBugs > 0) {
-                    board[i][j].setBug(true);
-                    numBugs--;
-                }
             }
         }
+        populateBoardWithBugs(numBugs);
     }
 
     private void calculateSums() {

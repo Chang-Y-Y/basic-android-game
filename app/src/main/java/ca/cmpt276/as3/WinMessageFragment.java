@@ -40,7 +40,6 @@ public class WinMessageFragment extends AppCompatDialogFragment {
                 .setTitle("CONGLATURATIONS")
                 .setView(v)
                 .setPositiveButton(android.R.string.ok, listener)
-                .setNegativeButton(android.R.string.cancel, listener)
                 .create();
     }
 }
