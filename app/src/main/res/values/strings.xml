@@ -33,7 +33,7 @@
     <string name="board_dimensions">Board Dimensions</string>
     <string name="hacker_bugs">"%1d hacker bugs"</string>
     <string name="board_dimension">"%1d rows, %1d columns"</string>
-    <string name="hackerman">XX__HackerManZZZZZZZZZ__XX</string>
+    <string name="hackerman">Code Bug Finder</string>
 
     <string name="number_of_hacker_bugs_found">"%1d of %1d bugs found</string>
     <string name="number_of_scans_used">"Number of Scans Used: %1d"</string>
