@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 
@@ -51,7 +52,9 @@ public class GameActivity extends AppCompatActivity {
         game = new Game();
 
         populateButtons();
+        lockButtonSizes();
         refreshScreen();
+
     }
 
     private void populateButtons() {
@@ -93,14 +96,13 @@ public class GameActivity extends AppCompatActivity {
         }
     }
 
-    private void changeButtonIcons(Button button) {
+    private void changeButtonIcons(Button button, int iconID) {
         int newWidth = button.getWidth();
         int newHeight = button.getHeight();
-        Bitmap originalBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.action_lock_pink);
+        Bitmap originalBitmap = BitmapFactory.decodeResource(getResources(), iconID);
         Bitmap scaledBitmap = Bitmap.createScaledBitmap(originalBitmap, newWidth, newHeight, true);
         Resources resources = getResources();
         button.setBackground(new BitmapDrawable(resources, scaledBitmap));
-        refreshScreen();
     }
 
     private void gridButtonClicked(int row, int col) {
@@ -113,11 +115,15 @@ public class GameActivity extends AppCompatActivity {
         GameAction action = game.updateGame(row, col);
         switch (action) {
             case FOUND:
-                changeButtonIcons(button);
+                changeButtonIcons(button, R.drawable.found_bug);
                 break;
             case SCANNED:
-                button.setText("" + game.getBoard().getNumOfBugsInPos(row, col));
+                button.setText(getString(R.string.number, game.getNumScans()));
+                if (game.getBoard().getCellAt(row, col).isBug()) {
+                    button.setTextColor(Color.parseColor("#FFFFFF"));
+                }
         }
+        refreshScreen();
     }
 
     private void lockButtonSizes() {
@@ -141,7 +147,7 @@ public class GameActivity extends AppCompatActivity {
             for (int j = 0; j < game.getBoard().getWidth(); j++) {
                 Cell cell = game.getBoard().getCellAt(i, j);
                 if (cell.isScanned()) {
-                    buttons[i][j].setText("" + game.getBoard().getNumOfBugsInPos(i, j));
+                    buttons[i][j].setText(getString(R.string.number, game.getBoard().getNumOfBugsInPos(i, j)));
                 }
             }
         }

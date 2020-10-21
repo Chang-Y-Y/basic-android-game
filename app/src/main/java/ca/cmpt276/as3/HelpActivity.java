@@ -10,6 +10,7 @@ import com.google.android.material.snackbar.Snackbar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.text.method.LinkMovementMethod;
 import android.view.View;
 import android.widget.TextView;
 
@@ -29,16 +30,11 @@ public class HelpActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         setTextDescription();
-        setAboutTheGameText();
     }
 
     public void setTextDescription() {
         TextView textView = findViewById(R.id.text_help_description);
-        textView.setText(R.string.about_the_author);
+        textView.setMovementMethod(LinkMovementMethod.getInstance());
     }
 
-    public void setAboutTheGameText() {
-        TextView textView = findViewById(R.id.text_game_info);
-        textView.setText(R.string.about_the_game);
-    }
 }
