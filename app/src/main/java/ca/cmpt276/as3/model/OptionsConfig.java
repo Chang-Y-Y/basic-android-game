@@ -9,6 +9,8 @@ public class OptionsConfig {
     private int numBug;
     private int numRow;
     private int numCol;
+    private int highScore;
+    private int numGamesStarted;
 
     private static OptionsConfig instance;
 
@@ -45,5 +47,29 @@ public class OptionsConfig {
 
     public void setNumCol(int numCol) {
         this.numCol = numCol;
+    }
+
+    public int getHighScore() {
+        return highScore;
+    }
+
+    public void setHighScore(int highScore) {
+        this.highScore = highScore;
+    }
+
+    public int getNumGamesStarted() {
+        return numGamesStarted;
+    }
+
+    public void setNumGamesStarted(int numGamesStarted) {
+        this.numGamesStarted = numGamesStarted;
+    }
+
+    public void incrementNumGamesStarted() {
+        numGamesStarted++;
+    }
+
+    public String constructConfigString() {
+        return numRow + " rows " + numCol + " columns " + numBug + " bugs";
     }
 }

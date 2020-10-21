@@ -58,7 +58,7 @@ public class GameActivity extends AppCompatActivity {
         // Setting up ui components
         populateButtons();
         lockButtonSizes();
-        updateGameTextState();
+        initGameText();
 
     }
 
@@ -167,11 +167,18 @@ public class GameActivity extends AppCompatActivity {
 
     private void checkGameFinished() {
         if (game.isFinished()) {
+            if (optionsConfig.getHighScore() > game.getNumScans()
+                    || optionsConfig.getHighScore() == 0) {
+
+                optionsConfig.setHighScore(game.getNumScans());
+                OptionsActivity.saveHighScoreForCurrentConfig(this,
+                                        optionsConfig.constructConfigString(),
+                                        optionsConfig.getHighScore());
+            }
+
             FragmentManager manager = getSupportFragmentManager();
             WinMessageFragment dialog = new WinMessageFragment();
             dialog.show(manager, "MessageDialog");
-
-            Log.i("TAG", "Just showed the dialog");
         }
     }
 
@@ -182,5 +189,13 @@ public class GameActivity extends AppCompatActivity {
                 game.getNumBugs()));
         textView = findViewById(R.id.text_num_scans_used);
         textView.setText(getString(R.string.number_of_scans_used, game.getNumScans()));
+    }
+
+    private void initGameText() {
+        updateGameTextState();
+        TextView textView = findViewById(R.id.text_num_games_played);
+        textView.setText(getString(R.string.num_games_started, optionsConfig.getNumGamesStarted()));
+        textView = findViewById(R.id.text_high_score);
+        textView.setText(getString(R.string.highscore_text, optionsConfig.getHighScore()));
     }
 }

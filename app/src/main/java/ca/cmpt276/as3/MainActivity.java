@@ -63,6 +63,10 @@ public class MainActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                OptionsConfig optionsConfig = OptionsConfig.getInstance();
+                optionsConfig.incrementNumGamesStarted();
+                OptionsActivity.saveNumGamesStarted(MainActivity.this, optionsConfig.getNumGamesStarted());
+
                 Intent intent = GameActivity.makeIntent(MainActivity.this);
                 startActivity(intent);
             }
@@ -96,6 +100,9 @@ public class MainActivity extends AppCompatActivity {
         optionsConfig.setNumBug(OptionsActivity.getNumBugInGame(this));
         optionsConfig.setNumCol(OptionsActivity.getNumColsForBoard(this));
         optionsConfig.setNumRow(OptionsActivity.getNumRowsForBoard(this));
+        optionsConfig.setNumGamesStarted(OptionsActivity.getNumGamesStarted(this));
+        optionsConfig.setHighScore(OptionsActivity.getHighscoreForCurrentConfig(this,
+                optionsConfig.constructConfigString()));
     }
 
 }

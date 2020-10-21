@@ -32,6 +32,7 @@ public class OptionsActivity extends AppCompatActivity {
     private static final String NUM_BUGS_KEY = "Num bugs in game";
     private static final String NUM_ROWS_KEY = "Num rows for game board";
     private static final String NUM_COLS_KEY = "Num cols for game board";
+    private static final String NUM_GAMES_STARTED_KEY = "Num games started";
     private static final int DEFAULT_NUM_BUGS = 6;
     private static final int DEFAULT_NUM_ROWS = 4;
     private static final int DEFAULT_NUM_COLS = 6;
@@ -44,9 +45,9 @@ public class OptionsActivity extends AppCompatActivity {
                     new int[]{-android.R.attr.state_checked}, //disabled
                     new int[]{android.R.attr.state_checked} //enabled
             },
-            new int[] {
+            new int[]{
                     Color.WHITE //disabled
-                    ,Color.RED //enabled
+                    , Color.RED //enabled
             }
     );
 
@@ -74,7 +75,7 @@ public class OptionsActivity extends AppCompatActivity {
 
         // Create the buttons
         int[] numBugs = getResources().getIntArray(R.array.num_hack_bugs);
-        for (final int numBug: numBugs) {
+        for (final int numBug : numBugs) {
 
             RadioButton button = new RadioButton(this);
             button.setText(getString(R.string.hacker_bugs, numBug));
@@ -84,6 +85,9 @@ public class OptionsActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     saveNumBug(numBug);
+                    optionsConfig.setHighScore(getHighscoreForCurrentConfig(
+                            OptionsActivity.this,
+                            optionsConfig.constructConfigString()));
                 }
             });
 
@@ -127,6 +131,9 @@ public class OptionsActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     saveBoardSize(height, width);
+                    optionsConfig.setHighScore(getHighscoreForCurrentConfig(
+                            OptionsActivity.this,
+                            optionsConfig.constructConfigString()));
                 }
             });
 
@@ -161,5 +168,32 @@ public class OptionsActivity extends AppCompatActivity {
 
         return preferences.getInt(NUM_COLS_KEY,
                 DEFAULT_NUM_COLS);
+    }
+
+    static public void saveNumGamesStarted(Context context, int numGames) {
+        SharedPreferences preferences = context.getSharedPreferences(SHARED_PREFS_NAME, MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putInt(NUM_GAMES_STARTED_KEY, numGames);
+        editor.apply();
+    }
+
+
+    static public int getNumGamesStarted(Context context) {
+        SharedPreferences preferences = context.getSharedPreferences(SHARED_PREFS_NAME, MODE_PRIVATE);
+
+        return preferences.getInt(NUM_GAMES_STARTED_KEY, 0);
+    }
+
+    static public int getHighscoreForCurrentConfig(Context context, String configKey) {
+        SharedPreferences preferences = context.getSharedPreferences(SHARED_PREFS_NAME, MODE_PRIVATE);
+
+        return preferences.getInt(configKey, 0);
+    }
+
+    static public void saveHighScoreForCurrentConfig(Context context, String configKey, int value) {
+        SharedPreferences preferences = context.getSharedPreferences(SHARED_PREFS_NAME, MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putInt(configKey, value);
+        editor.apply();
     }
 }
