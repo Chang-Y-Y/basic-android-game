@@ -13,7 +13,9 @@ import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.FragmentManager;
 
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TableLayout;
@@ -116,10 +118,6 @@ public class GameActivity extends AppCompatActivity {
             case SCANNED:
                 button.setText("" + game.getBoard().getNumOfBugsInPos(row, col));
         }
-        // Scale image to button
-        // Only works in JellyBean
-
-
     }
 
     private void lockButtonSizes() {
@@ -158,7 +156,11 @@ public class GameActivity extends AppCompatActivity {
 
     private void checkGameFinished() {
         if (game.isFinished()) {
-            finish();
+            FragmentManager manager = getSupportFragmentManager();
+            WinMessageFragment dialog = new WinMessageFragment();
+            dialog.show(manager, "MessageDialog");
+
+            Log.i("TAG", "Just showed the dialog");
         }
     }
 }
