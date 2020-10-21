@@ -20,15 +20,15 @@
     <string name="title_activity_game">Game</string>
     <string name="help_message">Help</string>
 
-    <string name="about_the_author">Created by Chang Yeob Yun\nTo learn more
-    about click <a href="https://opencoursehub.cs.sfu.ca/bfraser/grav-cms/cmpt276/home">here</a></string>
-    <string name="about_the_game">You are the cyber security expert at your software compnay.
+    <string name="about_the_author">Created by Chang Yeob Yun\n a computer science who just wants to pass\nTo learn more
+    about him click <a href="https://opencoursehub.cs.sfu.ca/bfraser/grav-cms/cmpt276/home">here</a></string>
+    <string name="about_the_game">You are the cyber security expert at your software company.
     You were browsing the mainframe code until you realized that there are bugs present in the code that
     is hacking and leaking the data. You have to find all the bugs by checking each section of the mainframe grid.
         If you find a bug then you get information on how many bugs are within that same row or column.
-        Find all the bugs in the fewest number of scans
+        Find all the bugs in the fewest number of scans.
     </string>
-    <string name="about_the_credit"></string>
+    <string name="about_the_credit">"Credit for icons and background images\nFreepik\nflaticon\nBrian Fraser's Gallery"</string>
     <string name="number_of_hacker_bugs">Number Of Hacker Bugs</string>
     <string name="board_dimensions">Board Dimensions</string>
     <string name="hacker_bugs">"%1d hacker bugs"</string>
