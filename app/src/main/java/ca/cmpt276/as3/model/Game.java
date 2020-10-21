@@ -1,5 +1,10 @@
 package ca.cmpt276.as3.model;
 
+/**
+ * Game class is where the actual game is stored and updated from
+ * Handles updates and states of the game
+ */
+
 public class Game {
     private boolean isFinished;
     private int numBugs;

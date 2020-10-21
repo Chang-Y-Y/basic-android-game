@@ -1,5 +1,8 @@
 package ca.cmpt276.as3.model;
 
+/**
+ * Represnts the spot to be clicked for the game logic
+ */
 public class Cell {
     private boolean isBug;
     private boolean isClicked;

@@ -14,6 +14,11 @@ import android.text.method.LinkMovementMethod;
 import android.view.View;
 import android.widget.TextView;
 
+/**
+ * This activity displays information about the author as well as information about the game
+ * and possibly citations to icons and background used
+ */
+
 public class HelpActivity extends AppCompatActivity {
 
     private static final String HELP_MESSAGE = "";

@@ -29,6 +29,9 @@ import ca.cmpt276.as3.model.Game;
 import ca.cmpt276.as3.model.GameAction;
 import ca.cmpt276.as3.model.OptionsConfig;
 
+/**
+ * Activity class for playing the game. This activity is where the main game is played
+ */
 public class GameActivity extends AppCompatActivity {
 
     private OptionsConfig optionsConfig;
@@ -47,10 +50,12 @@ public class GameActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        // Setting up variables
         optionsConfig = OptionsConfig.getInstance();
         buttons = new Button[optionsConfig.getNumRow()][optionsConfig.getNumCol()];
         game = new Game();
 
+        // Setting up ui components
         populateButtons();
         lockButtonSizes();
         updateGameTextState();
@@ -143,15 +148,6 @@ public class GameActivity extends AppCompatActivity {
     }
 
     private void refreshScreen(int row, int col) {
-        /**
-        for (int i = 0; i < game.getBoard().getHeight(); i++) {
-            for (int j = 0; j < game.getBoard().getWidth(); j++) {
-                Cell cell = game.getBoard().getCellAt(i, j);
-                if (cell.isScanned()) {
-                    buttons[i][j].setText(getString(R.string.number, game.getBoard().getNumOfBugsInPos(i, j)));
-                }
-            }
-        }*/
 
         for (int i = 0; i < game.getBoard().getHeight(); i++) {
             Cell cell = game.getBoard().getCellAt(i, col);

@@ -2,6 +2,12 @@ package ca.cmpt276.as3.model;
 
 import java.util.Random;
 
+/**
+ * Represents the overall board that contains the cells
+ * Responsible for placing bugs in the board as well as keeping track of all the cells
+ * also
+ */
+
 public class Board {
 
     private Cell board[][];

@@ -12,6 +12,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatDialogFragment;
 
+/**
+ * Fragment for the alert dialog
+ */
 public class WinMessageFragment extends AppCompatDialogFragment {
 
     @NonNull

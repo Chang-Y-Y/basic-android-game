@@ -1,5 +1,9 @@
 package ca.cmpt276.as3.model;
 
+/**
+ * Singleton object container for options configuration
+ * Gets initalized in the main activity
+ */
 public class OptionsConfig {
 
     private int numBug;
